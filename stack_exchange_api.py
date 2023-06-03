@@ -9,7 +9,6 @@ from requests_oauthlib import OAuth2Session
 
 logging.config.fileConfig('logging.conf')
 
-
 def get_authorization_url():
     client_id = os.environ.get('STACK_EXCHANGE_CLIENT_ID')
     if client_id is None:

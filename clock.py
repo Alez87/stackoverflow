@@ -1,12 +1,19 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import stack_overflow_page
+import stack_exchange_api
 import logging
+from sendgrid_helper import send_mail
 
 schedule = BlockingScheduler()
 
 @schedule.scheduled_job('interval', minutes=1)
 def access_stack_overflow_page():
-    stack_overflow_page.login()
+    try:
+        stack_overflow_page.login()
+    except:
+        message = "Error during login. Access stackoverflow.com to save your login streak"
+        logging.error(message)
+        send_mail("Login overdue alert!", message)
 
 @schedule.scheduled_job('interval', minutes=1)
 def access_stack_overflow_api():
