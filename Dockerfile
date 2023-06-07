@@ -14,4 +14,4 @@ RUN chmod 777 /usr/bin/google-chrome
 
 RUN pip install -r requirements.txt
 
-#CMD [ "python3", "stack_overflow_page.py" ]
+CMD [ "python3", "clock.py" ]

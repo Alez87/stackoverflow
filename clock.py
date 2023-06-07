@@ -6,7 +6,7 @@ from sendgrid_helper import send_mail
 
 schedule = BlockingScheduler()
 
-@schedule.scheduled_job('interval', minutes=1)
+@schedule.scheduled_job('interval', hours=3)
 def access_stack_overflow_page():
     try:
         stack_overflow_page.login()
@@ -15,7 +15,7 @@ def access_stack_overflow_page():
         logging.error(message)
         send_mail("Login overdue alert!", message)
 
-@schedule.scheduled_job('interval', minutes=1)
+@schedule.scheduled_job('interval', hours=3)
 def access_stack_overflow_api():
     delta_hours = 12
 
